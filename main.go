@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cache-fiber-test/cmd"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cache"
@@ -44,6 +45,8 @@ func main() {
 		results := FetchCampaignsFromDB(getCacheKey(c))
 		return c.Status(fiber.StatusOK).JSON(results)
 	})
+
+	go cmd.Run()
 
 	app.Listen(":3000")
 }
